@@ -31,3 +31,20 @@ def search(first_name="",last_name="",gender="",address="",contact=""):
     con.commit()
     con.close()    
     return data
+
+def update(id,first_name,last_name,gender,address,contact):
+    con=sqlite3.connect("contacts.db")
+    cur=con.cursor()
+    cur.execute("UPDATE contact SET firstname=?, lastname=?, gender=?, address=?, contact=? WHERE id=?",(first_name,last_name,gender,address,contact,id))
+    con.commit()
+    con.close()  
+
+def delete(id):
+    con=sqlite3.connect("contacts.db")
+    cur=con.cursor()
+    cur.execute("DELETE FROM contact WHERE id=?",(id,))
+    data=cur.fetchall()
+    con.commit()
+    con.close()   
+
+connect()
